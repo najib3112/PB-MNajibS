@@ -17,6 +17,7 @@ import com.example.myapplication.Models.UserDetails;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -68,6 +69,7 @@ public class MainActivity2 extends AppCompatActivity {
                 nimPengguna.requestFocus();
             } else {
                 //methods public void
+                registerUser(username, email, password, NIM);
             }
         });
     }
@@ -99,8 +101,17 @@ public class MainActivity2 extends AppCompatActivity {
                         Log.d(TAG, "Register: Error");
                     }
                 });
+            } else {
+                try {
+                    throw task.getException();
+                } catch (FirebaseAuthUserCollisionException e) {
+                    emailPengguna.setError("Email is Already registered");
+                } catch (Exception e) {
+                    // if sign in fails, display a message to the user
+                    Log.e(TAG, e.getMessage());
+                    Toast.makeText(MainActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-
 }
