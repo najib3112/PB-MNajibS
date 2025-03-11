@@ -101,16 +101,6 @@ public class MainActivity2 extends AppCompatActivity {
                         Log.d(TAG, "Register: Error");
                     }
                 });
-            } else {
-                try {
-                    throw task.getException();
-                } catch (FirebaseAuthUserCollisionException e) {
-                    emailPengguna.setError("Email is Already registered");
-                } catch (Exception e) {
-                    // if sign in fails, display a message to the user
-                    Log.e(TAG, e.getMessage());
-                    Toast.makeText(MainActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }
