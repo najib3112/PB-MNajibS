@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +14,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextInputEditText username, password;
+    TextInputEditText emailUser, passwordUser;
     CheckBox checkBoxes;
     Button btLogin;
     TextView forgotPass, signUp;
+    FirebaseAuth mAuth;
 
 
     @Override
@@ -33,18 +36,29 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        emailUser = findViewById(R.id.email);
+        passwordUser = findViewById(R.id.password);
         checkBoxes = findViewById(R.id.checkboxes);
         btLogin = findViewById(R.id.btnLogin);
         forgotPass = findViewById(R.id.forgotPassword);
         signUp = findViewById(R.id.signUp);
 
         btLogin.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
-            startActivity(intent);
-            finish();
-        });
+            String email, password;
+            email = String.valueOf(emailUser.getText());
+            password = String.valueOf(passwordUser.getText());
 
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Login berhasil", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        });
     }
 }
