@@ -84,9 +84,11 @@ public class MainActivity2 extends AppCompatActivity {
                         fUser.sendEmailVerification();
                         Toast.makeText(MainActivity2.this, "Account created", Toast.LENGTH_LONG).show();
 
-                        // Pindah ke halaman HomeActivity setelah berhasil mendaftar
-                        Intent intent = new Intent(MainActivity2.this, HomeActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        // Kirim data ke ProfileActivity setelah berhasil mendaftar
+                        Intent intent = new Intent(MainActivity2.this, ProfileActivity.class);
+                        intent.putExtra("username", username);
+                        intent.putExtra("email", email);
+                        intent.putExtra("nim", nim);
                         startActivity(intent);
                         finish();
                     } else {

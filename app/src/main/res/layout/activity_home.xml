@@ -20,12 +20,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+
+
         <!-- LinearLayout untuk menampung beberapa CardView -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profil" />
 
             <!-- CardView pertama -->
             <androidx.cardview.widget.CardView
@@ -155,6 +163,7 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
 
 
 

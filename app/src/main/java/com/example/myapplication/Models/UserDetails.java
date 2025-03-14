@@ -1,59 +1,41 @@
 package com.example.myapplication.Models;
 
 public class UserDetails {
+    private String uid;
+    private String username;
+    private String email;
+    private String password;
+    private String nim;
 
-    private String userId, username, userEmail, userPassword, userNIM;
+    public UserDetails() {
+        // Default constructor required for calls to DataSnapshot.getValue(UserDetails.class)
+    }
 
-    public UserDetails(){
+    public UserDetails(String uid, String username, String email, String password, String nim) {
+        this.uid = uid;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.nim = nim;
+    }
+
+    public String getUid() {
+        return uid;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getEmail() {
+        return email;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public String getNim() {
+        return nim;
     }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getUserNIM() {
-        return userNIM;
-    }
-
-    public void setUserNIM(String userNIM) {
-        this.userNIM = userNIM;
-    }
-
-    public UserDetails(String userId, String username, String userEmail, String userPassword, String userNIM) {
-        this.userId = userId;
-        this.username = username;
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
-        this.userNIM = userNIM;
-    }
-
-
 }
