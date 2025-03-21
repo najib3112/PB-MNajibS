@@ -1,43 +1,54 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private DrawerLayout drawerLayout;
+    private ImageButton buttonDrawerToggle;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
 
-        // Mengaktifkan Edge-to-edge untuk aplikasi (agar layar penuh)
-        EdgeToEdge.enable(this);
+        drawerLayout = findViewById(R.id.main);
+        buttonDrawerToggle = findViewById(R.id.buttonDrawerToggle);
+        navigationView = findViewById(R.id.navigationView);
 
-        // Menetapkan layout activity_home.xml
-        setContentView(R.layout.activity_home);  // Pastikan layout yang benar
-
-        // Menangani padding untuk sistem bar seperti status bar dan navigation bar
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        // Menangani klik tombol untuk membuka ProfileActivity
-        Button buttonProfile = findViewById(R.id.button);
-        buttonProfile.setOnClickListener(new View.OnClickListener() {
+        // Handle button click for opening the drawer
+        buttonDrawerToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Membuka ProfileActivity ketika tombol ditekan
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                // Open the drawer
+                drawerLayout.openDrawer(findViewById(R.id.navigationView));
+            }
+        });
+
+        // Handle item selection from the drawer menu
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.naviMenu) {
+                    // Handle Home click
+                } else if (itemId == R.id.profileid) {
+                    // Handle Profile click
+                } else if (itemId == R.id.settingid) {
+                    // Handle Setting click
+                }
+
+                // Close the drawer after selection
+                drawerLayout.closeDrawer(findViewById(R.id.navigationView));
+                return true;
             }
         });
     }

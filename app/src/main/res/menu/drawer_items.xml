@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group1">
+
+        <item
+            android:icon="@drawable/baseline_home_24"
+            android:id="@+id/naviMenu"
+            android:title="Home" />
+
+        <item
+            android:icon="@drawable/profile"
+            android:id="@+id/profileid"
+            android:title="Profile" />
+
+        <item
+            android:icon="@drawable/setting"
+            android:id="@+id/settingid"
+            android:title="Setting" />
+
+    </group>
+
+</menu>
